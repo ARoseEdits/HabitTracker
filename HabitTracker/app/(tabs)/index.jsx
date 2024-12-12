@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet } from 
 import Collapsible from 'react-native-collapsible';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import axios from 'axios';
+// import url ('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap');
 
 const App = () => {
   const [habits, setHabits] = useState([]);
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#eec170',
   },
   menuContainer: {
     marginBottom: 12,
@@ -115,11 +116,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 10,
-    backgroundColor: '#007BFF',
+    backgroundColor: '#585123',
     borderRadius: 5,
   },
   headerText: {
-    color: '#fff',
+    color: '#f2a65a',
     fontSize: 18,
   },
   habitRow: {
@@ -128,9 +129,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 10,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#f2a65a',
     borderRadius: 5,
-    shadowColor: '#000',
+    shadowColor: '#585123',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
@@ -139,20 +140,29 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#772f1a',
     marginRight: 10,
     fontSize: 16,
+    // fontFamily: Helvetica-Light
   },
   checkbox: {
     width: 24,
     height: 24,
     borderWidth: 2,
-    borderColor: '#ccc',
+    borderColor: '#772f1a',
     borderRadius: 4,
   },
   checkboxCompleted: {
-    backgroundColor: 'green',
+    backgroundColor: 'f2a65a',
   },
+
+  // text: {
+  //   .darker-grotesque-<uniquifier> {
+  //     font-family: "Darker Grotesque", sans-serif;
+  //     font-optical-sizing: auto;
+  //     font-weight: <weight>;
+  //     font-style: normal;
+  // }
 });
 
 export default App;
