@@ -26,7 +26,7 @@ const App = () => {
 
   const fetchHabits = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/habits');
+      const response = await axios.get('process.env.mongo_ULI');
       setHabits(response.data);
     } catch (error) {
       console.error('Error fetching habits:', error);
@@ -41,7 +41,7 @@ const App = () => {
     setHabits(updatedHabits);
 
     try {
-      await axios.put(`http://localhost:5000/api/habits/${habit._id}`, { completed: habit.completed });
+      await axios.put(`process.env.mongo_ULI${habit._id}`, { completed: habit.completed });
     } catch (error) {
       console.error('Error updating habit:', error);
     }

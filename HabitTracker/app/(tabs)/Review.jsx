@@ -13,7 +13,7 @@ const HabitReview = () => {
 
   useEffect(() => {
     // Fetch the list of habits from the MongoDB database
-    axios.get('https://your-api-url/habits')
+    axios.get('process.env.mongo_ULI')
       .then((response) => {
         setHabitsList(response.data);
         if (response.data.length > 0) {
@@ -28,7 +28,7 @@ const HabitReview = () => {
   useEffect(() => {
     if (selectedHabit) {
       // Fetch the habit data for the selected habit from the MongoDB database
-      axios.get(`https://your-api-url/habits/${selectedHabit}/data`)
+      axios.get(`process.env.mongo_ULI${selectedHabit}/data`)
         .then((response) => {
           setHabitData([response.data]); // Ensure habitData is an array
         })
@@ -71,7 +71,7 @@ const HabitReview = () => {
           <Picker.Item key={habit._id} label={habit.name} value={habit._id} />
         ))}
       </Picker>
-      
+
    {/* Pie Chart Section */}
    <Text variant="h6" style={styles.subtitle}>Overall Consistency</Text>
       <VictoryPie
