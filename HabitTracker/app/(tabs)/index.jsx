@@ -19,6 +19,16 @@ const App = () => {
     'Daily Cleaning',
     'Evening Routine',
   ];
+  // Static menu titles for saved files (lowercase no space)
+  const titlesSavedFiles = [
+    'Morning Routine',
+    'Afternoon Habits',
+    'Healthy & Fitness',
+    'Skills & Learning',
+    'Goal Specific Habits',
+    'Daily Cleaning',
+    'Evening Routine',
+  ];
 
   useEffect(() => {
     fetchHabits();
@@ -30,6 +40,15 @@ const App = () => {
       setHabits(response.data);
     } catch (error) {
       console.error('Error fetching habits:', error);
+    }
+  };
+
+  const updateUserHabits = async (updatedHabits) => {
+    try {
+      await axios.put('process.env.mongo_ULI', updatedHabits);
+      console.log('User habits updated successfully');
+    } catch (error) {
+      console.error('Error updating user habits:', error);
     }
   };
 
@@ -48,9 +67,15 @@ const App = () => {
   };
 
   const handleTextChange = (menuIndex, habitIndex, text) => {
+    console.log('1')
     const updatedHabits = [...habits];
-    updatedHabits[menuIndex][habitIndex].name = text;
+    console.log (updatedHabits)
+    // add titles for saved files and check for updated habits/section 
+    updatedHabits[menuIndex][habitIndex].title = text;
+    console.log (3)
     setHabits(updatedHabits);
+    updateUserHabits(JSON.stringify(updatedHabits))
+    console.log (4)
   };
 
   const toggleCollapse = (index) => {
