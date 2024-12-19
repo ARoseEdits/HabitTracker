@@ -4,13 +4,13 @@ import { Tabs } from "expo-router";
 export default function RootLayout() {
     return (
         <Stack>
-            {/* <Stack.Screen
-            name="index"
+            <Stack.Screen
+            name="(tabs)"
             options={{
-                headerTitle: "My Daily Habits",
+             headerShown: false,
                 // statusBarBackgroundColor: '#585123',
             }}
-            /> */}
+            />
             {/* <Stack.Screen
             name="index"
             options={{

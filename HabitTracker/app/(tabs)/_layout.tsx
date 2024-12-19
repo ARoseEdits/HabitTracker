@@ -1,9 +1,15 @@
 // import { Tabs } from "@mui/material";
 import { Stack } from "expo-router";
 import { Tabs } from "expo-router";
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { useColorScheme } from '@/hooks/useColorScheme';
+
+
 
 export default function TabsLayout() {
+    const colorScheme = useColorScheme();
     return (
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Tabs>
             <Tabs.Screen
             name="tabs"
@@ -15,22 +21,23 @@ export default function TabsLayout() {
             name="index"
             options={{
                 headerTitle: "My Daily Habits",
-                headerTintColor: '#eec170',
+                headerTintColor: '#f2a65a',
             }}
             />
             <Tabs.Screen
             name="Review"
             options={{
                 headerTitle: "Habit Review",
-                headerTintColor: '#eec170',
+                headerTintColor: '#f2a65a',
             }}
             />
             <Tabs.Screen
             name="EditHabits"
             options={{
                 headerTitle: "Edit My Habits",
-                headerTintColor: '#eec170',
+                headerTintColor: '#f2a65a',
             }}
             />
         </Tabs>
+        </ThemeProvider>
 )}

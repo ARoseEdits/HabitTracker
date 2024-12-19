@@ -12,7 +12,7 @@ const HabitTrackerPage = () => {
     }
 
     try {
-      const response = await fetch('http://<your-server-url>/habits', {
+      const response = await fetch('process.env.mongo_ULI', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,13 +42,13 @@ const HabitTrackerPage = () => {
         style={styles.picker}
       >
         <Picker.Item label="Select a parent" value="" />
-        <Picker.Item label="Parent 1" value="Parent1" />
-        <Picker.Item label="Parent 2" value="Parent2" />
-        <Picker.Item label="Parent 3" value="Parent3" />
-        <Picker.Item label="Parent 4" value="Parent4" />
-        <Picker.Item label="Parent 5" value="Parent5" />
-        <Picker.Item label="Parent 6" value="Parent6" />
-        <Picker.Item label="Parent 7" value="Parent7" />
+        <Picker.Item label="Morning Routine" value="Parent1" />
+        <Picker.Item label="Afternoon Habits" value="Parent2" />
+        <Picker.Item label="Healthy & Fitness" value="Parent3" />
+        <Picker.Item label="Skills & Learning" value="Parent4" />
+        <Picker.Item label="Goal Specific Habits" value="Parent5" />
+        <Picker.Item label="Daily Cleaning" value="Parent6" />
+        <Picker.Item label="Evening Routine" value="Parent7" />
       </Picker>
 
       <Text style={styles.label}>New Habit:</Text>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#eec170',
   },
   label: {
     fontSize: 16,
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
   picker: {
     height: 50,
     marginBottom: 16,
+    backgroundColor: '#585123',
   },
   input: {
     height: 40,
@@ -85,6 +86,22 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingHorizontal: 8,
   },
+  Text: {
+    fontSize: 16,
+    color: '#f2a65a',
+
+  },
+  Button: {
+    height: 50,
+    marginBottom: 16,
+    backgroundColor: '#585123',
+
+  },
+  label: {
+    fontSize: 16,
+    color: '#585123',
+  },
+
 });
 
 export default HabitTrackerPage;

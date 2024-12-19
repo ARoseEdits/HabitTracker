@@ -54,7 +54,7 @@ const habitSchema = new mongoose.Schema({
 
 const Habit = mongoose.model('Habit', habitSchema);
 
-// Route to save habit
+// Route to save habit ****
 app.post('/habits', async (req, res) => {
   const { parent, habit } = req.body;
 
@@ -71,6 +71,10 @@ app.post('/habits', async (req, res) => {
   }
 });
 
+// route to log in 
+app.post('/login', async (req, res) => {
+
+  
 // Start the server
 const PORT = process.env.PORT || 3000;
 

@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: 16,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#eec170',
   },
   title: {
     textAlign: 'center',
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   picker: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#585123',
     marginVertical: 10,
     borderRadius: 4,
     padding: 8,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: 4,
     padding: 8,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#585123',
     borderRadius: 4,
     elevation: 2,
   },
