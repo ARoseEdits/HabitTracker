@@ -3,7 +3,7 @@ const User = require('../models/userModel'); // Assuming this model exists
 const jwt = require('jsonwebtoken'); // JWT for token generation
 const router = express.Router();
 const verifyToken = require('../middleware/authMiddleware'); // Ensure this middleware exists
-const bcrypt = require('bcrypt'); // Added for password hashing
+const bcrypt = require('crypt'); // Added for password hashing
 const multer = require('multer'); // Added for file upload
 const path = require('path');
 

@@ -13,7 +13,7 @@ const HabitReview = () => {
 
   useEffect(() => {
     // Fetch the list of habits from the MongoDB database
-    axios.get('process.env.mongo_ULI')
+    axios.get('process.env.MONGODB_URI')
       .then((response) => {
         setHabitsList(response.data);
         if (response.data.length > 0) {
@@ -28,7 +28,7 @@ const HabitReview = () => {
   useEffect(() => {
     if (selectedHabit) {
       // Fetch the habit data for the selected habit from the MongoDB database
-      axios.get(`process.env.mongo_ULI${selectedHabit}/data`)
+      axios.get(`process.env.MONGODB_URI${selectedHabit}/data`)
         .then((response) => {
           setHabitData([response.data]); // Ensure habitData is an array
         })

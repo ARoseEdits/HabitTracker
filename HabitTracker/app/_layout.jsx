@@ -1,5 +1,11 @@
 import { Stack } from "expo-router";
-import { Tabs } from "expo-router";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginPage from './LoginPage'; // Replace with your actual path
+import HomePage from './HomePage'; // Replace with your actual path
+
+const Stack = createStackNavigator();
 
 export default function RootLayout() {
     return (
@@ -11,6 +17,12 @@ export default function RootLayout() {
                 // statusBarBackgroundColor: '#585123',
             }}
             />
+            <NavigationContainer>
+            <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="LoginPage" component={LoginPage} />
+            <Stack.Screen name="index" component={HomePage} />
+            </Stack.Navigator>
+            </NavigationContainer>
             {/* <Stack.Screen
             name="index"
             options={{
@@ -38,6 +50,22 @@ export default function RootLayout() {
             options={{
                 headerShown: false,
                 headerTitle: "Opps...",
+                headerTintColor: '#585123',
+            }}
+            />
+            <Stack.Screen
+            name="LoginPage"
+            options={{
+                headerShown: false,
+                headerTitle: "Welcome",
+                headerTintColor: '#585123',
+            }}
+            />
+            <Stack.Screen
+            name="RegisterPage"
+            options={{
+                headerShown: false,
+                headerTitle: "Welcome",
                 headerTintColor: '#585123',
             }}
             />

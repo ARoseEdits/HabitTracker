@@ -12,7 +12,7 @@ const HabitTrackerPage = () => {
     }
 
     try {
-      const response = await fetch('process.env.mongo_ULI', {
+      const response = await fetch('process.env.MONGODB_URI', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

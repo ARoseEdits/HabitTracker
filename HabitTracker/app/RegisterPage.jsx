@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
-  Button,
-  TextField,
-  Container,
-  Typography,
-  Paper,
-  Box,
-} from '@mui/material';
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function RegisterPage() {
-  const navigate = useNavigate();
+const RegisterPage = () => {
+  const navigation = useNavigation();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
   const [error, setError] = useState('');
 
-  const handleChange = (e) => {
+  const handleChange = (name, value) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value,
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setError('');
 
     // Basic validation
@@ -45,7 +44,7 @@ function RegisterPage() {
         body: JSON.stringify({
           username: formData.username,
           email: formData.email,
-          password: formData.password
+          password: formData.password,
         }),
       });
 
@@ -56,7 +55,9 @@ function RegisterPage() {
       }
 
       // Registration successful
-      navigate('/login');
+      Alert.alert('Success', 'Registration successful!', [
+        { text: 'OK', onPress: () => navigation.navigate('Login') },
+      ]);
     } catch (err) {
       setError(err.message || 'Registration failed');
       console.error('Registration error:', err);
@@ -64,79 +65,98 @@ function RegisterPage() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box sx={{ marginTop: 8 }}>
-        <Paper elevation={3} sx={{ padding: 4 }}>
-          <Typography component="h1" variant="h5" align="center" gutterBottom>
-            Register
-          </Typography>
-          
-          {error && (
-            <Typography color="error" align="center" gutterBottom>
-              {error}
-            </Typography>
-          )}
+    <View style={styles.container}>
+      <View style={styles.formContainer}>
+        <Text style={styles.title}>Register</Text>
 
-          <form onSubmit={handleSubmit}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
-              autoFocus
-              value={formData.username}
-              onChange={handleChange}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="new-password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="confirmPassword"
-              label="Confirm Password"
-              type="password"
-              id="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Register
-            </Button>
-          </form>
-        </Paper>
-      </Box>
-    </Container>
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          value={formData.username}
+          onChangeText={(text) => handleChange('username', text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email Address"
+          value={formData.email}
+          onChangeText={(text) => handleChange('email', text)}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          value={formData.password}
+          onChangeText={(text) => handleChange('password', text)}
+          secureTextEntry
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Confirm Password"
+          value={formData.confirmPassword}
+          onChangeText={(text) => handleChange('confirmPassword', text)}
+          secureTextEntry
+        />
+
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Register</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
-}
+};
 
-export default RegisterPage; 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#fff',
+  },
+  formContainer: {
+    width: '100%',
+    maxWidth: 400,
+    padding: 16,
+    borderRadius: 8,
+    backgroundColor: '#f9f9f9',
+    elevation: 3,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+  input: {
+    width: '100%',
+    height: 50,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    marginBottom: 16,
+    fontSize: 16,
+  },
+  button: {
+    backgroundColor: '#007bff',
+    borderRadius: 8,
+    paddingVertical: 12,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  error: {
+    color: 'red',
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+});
+
+export default RegisterPage;
