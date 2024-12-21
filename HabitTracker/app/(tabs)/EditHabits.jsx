@@ -1,34 +1,43 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Picker, StyleSheet, Alert } from 'react-native';
 
+// const { MongoClient } = require("mongodb");
+
 const HabitTrackerPage = () => {
   const [selectedParent, setSelectedParent] = useState('');
   const [habitText, setHabitText] = useState('');
 
   const saveHabit = async () => {
+    console.log (1)
     if (!selectedParent || !habitText) {
       Alert.alert('Error', 'Please select a parent and fill in the habit text.');
       return;
     }
 
     try {
-      const response = await fetch('process.env.MONGODB_URI', {
+      console.log (2)
+      const response = await fetch('mongodb+srv://ambokrose:jrlZgMKtiDLNbMvh@cluster0.gdpni.mongodb.net/' , {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ parent: selectedParent, habit: habitText }),
       });
-
-      const result = await response.json();
+      console.log (3)
+      const result = response.json();
+      console.log(4)
       if (response.ok) {
+        console.log(5)
         Alert.alert('Success', 'Habit saved successfully!');
         setHabitText('');
         setSelectedParent('');
       } else {
+        console.log(6)
         Alert.alert('Error', result.message || 'Something went wrong.');
       }
     } catch (error) {
+      console.log(7)
+      console.log(error)
       Alert.alert('Error', 'Failed to save the habit.');
     }
   };
